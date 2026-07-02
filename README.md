@@ -5,7 +5,7 @@ Certutil Cache Reporter is a Windows forensic utility that analyzes **CryptnetUr
 https://github.com/user-attachments/assets/302b6ce9-b6f3-401b-b04e-db02582d1362
 
 ## Purpose
-This tool can be deployed during live system analysis or on a full disk image in most real incident response cases. The CryptnetUrlCache artifacts often survive even when other evidence has been removed or is unavailable- event logs were cleared, downloaded files were deleted, threat actor cannot be attributed. 
+This tool can easily be deployed during live system analysis or on a full disk image in most real IR/Hunt cases. The CryptnetUrlCache artifacts often survive even when other evidence has been removed or is unavailable- event logs were cleared, downloaded files were deleted, threat actor cannot be attributed. Of course this is only one [LOLBin](https://lolbas-project.github.io/lolbas/Binaries/Certutil/) that can be used to download files, and luckily it leaves alot behind.
 
 
 ## Features
