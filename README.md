@@ -2,11 +2,8 @@
 
 Certutil Cache Reporter is a Windows forensic utility that analyzes **CryptnetUrlCache** artifacts created by `certutil.exe`. The standalone tool enumerates cache entries across all user profiles, extracts download metadata, correlates downloaded content, calculates cryptographic hashes, performs optional YARA scanning, and exports the results to a CSV report for digital forensic investigations, incident response, and threat hunting.
 
+https://github.com/user-attachments/assets/302b6ce9-b6f3-401b-b04e-db02582d1362
 
-
-
-
----
 ## Purpose
 This tool can be deployed during live system analysis or on a full disk image in most real incident response cases. The CryptnetUrlCache artifacts often survive even when other evidence has been removed or is unavailable- event logs were cleared, downloaded files were deleted, threat actor cannot be attributed. 
 
@@ -46,15 +43,10 @@ This tool can be deployed during live system analysis or on a full disk image in
 * Generates a comprehensive CSV report
 * Displays real-time progress and scan statistics
 
----
-
 ## Requirements
 
 * Windows
 * .NET 8 Runtime 
-
-
----
 
 ## Usage
 
@@ -73,7 +65,6 @@ CertutilCacheReporter.exe [options]
 | `--no-yara`        | Disable YARA download and scanning                    |
 | `-h`, `--help`     | Show help                                             |
 
----
 
 ## Examples
 
@@ -83,15 +74,11 @@ CertutilCacheReporter.exe [options]
 CertutilCacheReporter.exe
 ```
 
----
-
 ### Scan a mounted forensic image
 
 ```cmd
 CertutilCacheReporter.exe -d D:\
 ```
-
----
 
 ### Save report to a custom directory (Can also be a UNC network share)
 
@@ -99,15 +86,11 @@ CertutilCacheReporter.exe -d D:\
 CertutilCacheReporter.exe -o C:\Reports
 ```
 
----
-
 ### Specify the report filename
 
 ```cmd
 CertutilCacheReporter.exe -o C:\Reports\Case001.csv
 ```
-
----
 
 ### Use a custom YARA executable (for sandboxed analysis environments)
 
@@ -115,15 +98,11 @@ CertutilCacheReporter.exe -o C:\Reports\Case001.csv
 CertutilCacheReporter.exe -e C:\Tools\yara64.exe
 ```
 
----
-
 ### Use custom YARA rules (for sandboxed analysis environments)
 
 ```cmd
 CertutilCacheReporter.exe -r C:\Rules
 ```
-
----
 
 ### Use custom YARA executable and rules directory with one or multiple .yar or .yara files
 
@@ -131,15 +110,11 @@ CertutilCacheReporter.exe -r C:\Rules
 CertutilCacheReporter.exe -e C:\Tools\yara64.exe -r C:\Rules
 ```
 
----
-
 ### Disable YARA scanning (much faster depending on rulesets)
 
 ```cmd
 CertutilCacheReporter.exe --no-yara
 ```
-
----
 
 ## CSV Output
 
@@ -165,21 +140,13 @@ The generated report includes information such as:
 * Metadata Path
 * Error Information
 
----
-
 ## Automatic Downloads
 
 If no YARA executable is specified, the tool automatically downloads the latest supported Windows x64 YARA release. If no rules directory is specified, the tool automatically downloads the latest YARA Forge Core rules. Both are cached locally and reused on future executions.
 
----
-
 ## Credits
 
-YARA rules:
-
 * YARA Forge (https://yarahq.github.io/)
-
----
 
 ## License
 
