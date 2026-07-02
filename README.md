@@ -2,6 +2,8 @@
 
 Certutil Cache Reporter is a Windows forensic utility that analyzes **CryptnetUrlCache** artifacts created by `certutil.exe`. The standalone tool enumerates cache entries across all user profiles, extracts download metadata, correlates downloaded content, calculates cryptographic hashes, performs optional YARA scanning, and exports the results to a CSV report for digital forensic investigations, incident response, and threat hunting.
 
+[Watch the Demo](resources/demo.mp4)
+
 ---
 ## Purpose
 This tool can be deployed during live system analysis or on a full disk image in most real incident response cases. The CryptnetUrlCache artifacts often survive even when other evidence has been removed or is unavailable- event logs were cleared, downloaded files were deleted, threat actor cannot be attributed. 
@@ -47,7 +49,7 @@ This tool can be deployed during live system analysis or on a full disk image in
 ## Requirements
 
 * Windows
-* .NET 8 Runtime (or use the self-contained release)
+* .NET 8 Runtime 
 
 
 ---
@@ -89,7 +91,7 @@ CertutilCacheReporter.exe -d D:\
 
 ---
 
-### Save report to a custom directory
+### Save report to a custom directory (Can also be a UNC network share)
 
 ```cmd
 CertutilCacheReporter.exe -o C:\Reports
@@ -105,7 +107,7 @@ CertutilCacheReporter.exe -o C:\Reports\Case001.csv
 
 ---
 
-### Use a custom YARA executable
+### Use a custom YARA executable (for sandboxed analysis environments)
 
 ```cmd
 CertutilCacheReporter.exe -e C:\Tools\yara64.exe
@@ -113,7 +115,7 @@ CertutilCacheReporter.exe -e C:\Tools\yara64.exe
 
 ---
 
-### Use custom YARA rules
+### Use custom YARA rules (for sandboxed analysis environments)
 
 ```cmd
 CertutilCacheReporter.exe -r C:\Rules
@@ -121,7 +123,7 @@ CertutilCacheReporter.exe -r C:\Rules
 
 ---
 
-### Use custom YARA executable and rules
+### Use custom YARA executable and rules directory with one or multiple .yar or .yara files
 
 ```cmd
 CertutilCacheReporter.exe -e C:\Tools\yara64.exe -r C:\Rules
@@ -129,7 +131,7 @@ CertutilCacheReporter.exe -e C:\Tools\yara64.exe -r C:\Rules
 
 ---
 
-### Disable YARA scanning
+### Disable YARA scanning (much faster depending on rulesets)
 
 ```cmd
 CertutilCacheReporter.exe --no-yara
@@ -139,6 +141,8 @@ CertutilCacheReporter.exe --no-yara
 
 ## CSV Output
 
+![output](resources/output.png)
+
 The generated report includes information such as:
 
 * User/Profile
@@ -146,15 +150,13 @@ The generated report includes information such as:
 * Download URL
 * Downloaded Filename
 * File Extension
-* SHA-256
-* MD5
-* SHA-1
-* YARA Match
-* Matching YARA Rules
-* Downloaded File Size
+* SHA-256, SHA-1, MD5 hashes of downloaded file
+* YARA Match (yes/no)
+* Matching YARA Rules (I/A)
+* Downloaded File Size in bytes
 * Cache Key
 * HTTP ETag
-* HTTP Last-Modified
+* HTTP Last-Modified (Last modification time reported by the web server for the downloaded resource. May provide insight into when the resource was last updated but should not be considered authoritative.)
 * File Type
 * Content Exists
 * Content Path
@@ -165,23 +167,7 @@ The generated report includes information such as:
 
 ## Automatic Downloads
 
-If no YARA executable is specified, the tool automatically downloads the latest supported Windows x64 YARA release.
-
-If no rules directory is specified, the tool automatically downloads the latest YARA Forge Core rules.
-
-Both are cached locally and reused on future executions.
-
----
-
-## Workflow
-
-1. Locate CryptnetUrlCache artifacts.
-2. Parse metadata files.
-3. Match metadata with cached content.
-4. Calculate file hashes.
-5. Detect file type.
-6. Optionally scan files using YARA.
-7. Export results to CSV.
+If no YARA executable is specified, the tool automatically downloads the latest supported Windows x64 YARA release. If no rules directory is specified, the tool automatically downloads the latest YARA Forge Core rules. Both are cached locally and reused on future executions.
 
 ---
 
@@ -189,7 +175,7 @@ Both are cached locally and reused on future executions.
 
 YARA rules:
 
-* YARA Forge
+* YARA Forge (https://yarahq.github.io/)
 
 ---
 
