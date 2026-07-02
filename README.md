@@ -147,7 +147,3 @@ If no YARA executable is specified, the tool automatically downloads the latest 
 ## Credits
 
 * YARA Forge (https://yarahq.github.io/)
-
-## License
-
-MIT License.
